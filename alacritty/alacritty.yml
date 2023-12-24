@@ -1,0 +1,10 @@
+#import:
+#  - ~/.config/alacritty/themes/iterm.yaml
+window:
+  opacity: 1.0
+font:
+  size: 13
+  normal:
+    family: JetBrainsMonoNL Nerd Font Mono
+    # The `style` can be specified to pick a specific face.
+    style: Regular
