@@ -1,5 +1,5 @@
 {
-  "zenMode.hideLineNumbers": false,
+    "zenMode.hideLineNumbers": false,
     "editor.lineNumbers": "relative",
     "vim.leader": "<Space>",
     "vim.hlsearch": true,
@@ -63,23 +63,42 @@
       // toggle comment selection
       { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
     ],
-    
 
-    //my keybinding
-    "workbench.colorTheme": "NarutoDark",
-    "workbench.iconTheme": "material-icon-theme",
+
+
+
+
     "editor.mouseWheelZoom": true,
-    "editor.tabSize": 2,
-    "tabnine.experimentalAutoImports": true,
+    "glassit.alpha": 255,
+    "markdown-preview-enhanced.previewTheme": "night.css",
     "explorer.confirmDelete": false,
-    "editor.accessibilitySupport": "off",
-    "files.autoSave": "afterDelay",
-    "editor.fontFamily": "JetBrains Mono,'Droid Sans Mono', 'monospace', monospace",
-    "terminal.integrated.fontFamily": "monospace",
-    "window.menuBarVisibility": "toggle",
+    "C_Cpp.default.compilerPath": "D:\\applications\\gcc",
+    "explorer.confirmDragAndDrop": false,
+    "editor.fontFamily": "JetBrainsMono Nerd Font,Consolas, 'Courier New', monospace",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "git.autofetch": true,
+    "gitlens.graph.minimap.enabled": false,
+    "git.confirmSync": false,
+    "liveServer.settings.donotShowInfoMsg": true,
     "editor.minimap.enabled": false,
-    "breadcrumbs.enabled": false,
-    "workbench.activityBar.location": "hidden",
-    "window.zoomLevel": 1,
+    "workbench.settings.applyToAllProfiles": [
 
+
+    ],
+    "workbench.iconTheme": "material-icon-theme",
+    "breadcrumbs.enabled": false,
+    "tabnine.experimentalAutoImports": true,
+    "window.menuBarVisibility": "compact",
+    "editor.scrollbar.horizontalScrollbarSize": 5,
+    "editor.scrollbar.verticalScrollbarSize": 5,
+    "editor.scrollbar.vertical": "hidden",
+    "transparent-win.transparency": 0.5,
+    "editor.glyphMargin": false,
+    "editor.folding": false,
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "none",
+    "editor.tabSize": 2,
+    "json.schemas": [
+      
+    ]
 }
