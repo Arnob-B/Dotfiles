@@ -15,3 +15,9 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
+
+
+
+-- remapping the leader key
+vim.g.mapleader = " "
+

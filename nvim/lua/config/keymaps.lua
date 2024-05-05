@@ -3,22 +3,81 @@
 -- Add any additional keymaps here
 
 
+-- { noremap = true, silent = true } are options for the mapping
+--   - 'noremap' prevents recursive mappings
+--   - 'silent' suppresses the command from being echoed to the command line
 
 
-
+vim.g.mapleader = " "
 
 -- Define a function to set up key mappings for the explorer
 local function setup_explorer_keymaps()
     -- Use the leader key followed by "e" to open the explorer
     vim.api.nvim_set_keymap('n', '<Leader>e', ':Ex<CR>', { noremap = true, silent = true })
-    
-    -- Use the leader key followed by "r" to refresh the explorer
-    vim.api.nvim_set_keymap('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = true, silent = true })
-    
-    -- Use the leader key followed by "n" to find the current file in the explorer
-    vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 end
-vim.api.nvim_set_keymap('n', '<Leader>1', ':!g++ % -o a.exe && a.exe<CR>', { noremap = true, silent = true })
 
 -- Call the setup function
 setup_explorer_keymaps()
+
+
+
+
+-- Define key mappings
+local function compiler_and_run_cpp_windows()
+function cppexec()
+  local Popup = require("nui.popup")
+  local event = require("nui.utils.autocmd").event
+
+  local popup = Popup({
+    enter = true,
+    focusable = true,
+    border = {
+      style = "rounded",
+    },
+    position = "50%",
+    size = {
+      width = "80%",
+      height = "60%",
+    },
+  })
+
+  local filename = vim.api.nvim_buf_get_name(0);
+  -- mount/open the component
+  popup:mount()
+
+  vim.fn.termopen(string.format("g++ \"%s\" && a.exe",filename))
+
+  -- unmount component when cursor leaves buffer
+  popup:map('n','q',function()
+    popup:unmount()
+  end)
+  popup:on(event.BufLeave, function()
+    popup:unmount()
+  end)
+end
+  vim.api.nvim_set_var("cppexec", cppexec)
+  vim.api.nvim_set_keymap('n', '<leader>1', ':CompetiTest run <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>2', ':CompetiTest run_no_compile <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>3', ':CompetiTest show_ui <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>4', ':lua cppexec() <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>at', ':CompetiTest add_testcase <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>et', ':CompetiTest edit_testcase <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>dt', ':CompetiTest delete_testcase <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>ap', ':CompetiTest receive problem <CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>ac', ':CompetiTest receive contest <CR>', { noremap = true, silent = true })
+end
+compiler_and_run_cpp_windows()
+
+
+
+--nvim-windows-spliting keywords
+  vim.api.nvim_set_keymap('n', '<Leader>l','<C-w>l', { noremap = true })
+  vim.api.nvim_set_keymap('n', '<Leader>h','<C-w>h', { noremap = true })
+  vim.api.nvim_set_keymap('n', '<Leader>j','<C-w>j', { noremap = true })
+  vim.api.nvim_set_keymap('n', '<Leader>k','<C-w>k', { noremap = true })
+  --tabs
+  vim.api.nvim_set_keymap('n', '<S-k>',':tabnext<CR>', { noremap = true })
+  vim.api.nvim_set_keymap('n', '<S-j>',':tabprevious<CR>', { noremap = true })
+ -- Define a keymap to split open a new terminal at the bottom
+vim.api.nvim_set_keymap('n', '<C-S-j>', ':below split<CR>:terminal<CR>', { noremap = true, silent = true })
+ 
