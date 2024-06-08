@@ -7,7 +7,8 @@ local cd_command = "cd " .. directory
 -- Execute the commands
 vim.cmd(cd_command)
 -- Enable relative line numbering
-vim.api.nvim_command('set relativenumber')
+vim.cmd('set relativenumber')
+vim.cmd('set number')
 
 -- Set tab width to 2 spaces
 vim.opt.tabstop = 2
@@ -21,3 +22,6 @@ vim.bo.softtabstop = 2
 -- remapping the leader key
 vim.g.mapleader = " "
 
+
+--python provider support
+--vim.g.python3_host_prog = 'C:\\Users\\A\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe '

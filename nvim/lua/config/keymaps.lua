@@ -10,10 +10,13 @@
 
 vim.g.mapleader = " "
 
+--shortcut to reload vim file
+vim.api.nvim_set_keymap('n','<leader>rr',':source $MYVIMRC<CR>',{ noremap = true, silent = true })
+
 -- Define a function to set up key mappings for the explorer
 local function setup_explorer_keymaps()
     -- Use the leader key followed by "e" to open the explorer
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':Ex<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<Leader>ee', ':Ex<CR>', { noremap = true, silent = true })
 end
 
 -- Call the setup function
@@ -45,7 +48,7 @@ function cppexec()
   -- mount/open the component
   popup:mount()
 
-  vim.fn.termopen(string.format("g++ \"%s\" && a.exe",filename))
+  vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && a.exe",filename))
 
   -- unmount component when cursor leaves buffer
   popup:map('n','q',function()
@@ -81,3 +84,10 @@ compiler_and_run_cpp_windows()
  -- Define a keymap to split open a new terminal at the bottom
 vim.api.nvim_set_keymap('n', '<C-S-j>', ':below split<CR>:terminal<CR>', { noremap = true, silent = true })
  
+
+-- auto bracket/'/" completions
+vim.api.nvim_set_keymap('i','{<CR>','{<CR>}<Esc>ko<tab>',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('i','(','()<Esc>i',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('i','[','[]<Esc>i',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('i','\'','\'\'<Esc>i',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('i','\"','\"\"<Esc>i',{ noremap = true, silent = true })

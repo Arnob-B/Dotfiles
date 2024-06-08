@@ -6,8 +6,4 @@ return{
       vim.cmd([[colorscheme moonfly]])
     end,
   },
-  {
-    "bfrg/vim-cpp-modern"
-  }
-
 }
