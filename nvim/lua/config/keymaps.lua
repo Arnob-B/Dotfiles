@@ -48,7 +48,8 @@ function cppexec()
   -- mount/open the component
   popup:mount()
 
-  vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && a.exe",filename))
+  --vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && a.exe",filename))
+  vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && ./a.out",filename))
 
   -- unmount component when cursor leaves buffer
   popup:map('n','q',function()

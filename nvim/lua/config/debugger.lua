@@ -19,7 +19,8 @@ function cppdebugexec()
   -- mount/open the component
   popup:mount()
 
-  vim.fn.termopen(string.format("g++ \"%s\" -g -o agdb.exe && gdb agdb.exe",filename))
+  --vim.fn.termopen(string.format("g++ \"%s\" -g -o agdb.exe && gdb agdb.exe",filename))
+  vim.fn.termopen(string.format("g++ \"%s\" -g -o agdb && gdb agdb",filename))
 
   -- unmount component when cursor leaves buffer
   popup:map('n','q',function()

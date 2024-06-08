@@ -1,11 +1,13 @@
 -- Set the directory you want to open
-local directory = "D://code/cp/"
-
+--local directory = "D://code/cp/"
 -- Change directory command
-local cd_command = "cd " .. directory
-
+--local cd_command = "cd " .. directory
 -- Execute the commands
-vim.cmd(cd_command)
+--vim.cmd(cd_command)
+
+
+
+
 -- Enable relative line numbering
 vim.cmd('set relativenumber')
 vim.cmd('set number')
