@@ -24,6 +24,16 @@ vim.bo.softtabstop = 2
 -- remapping the leader key
 vim.g.mapleader = " "
 
+-- netrw hidding files
+--vim.g.netrw_list_hide = "^\..*"        
+vim.g.netrw_hide = 1                   
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 0
+--vim.g.netrw_browse_split = 4
+--vim.g.netrw_altv = 1
+--vim.g.netrw_winsize = 25
+
+
 
 --python provider support
 --vim.g.python3_host_prog = 'C:\\Users\\A\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe '

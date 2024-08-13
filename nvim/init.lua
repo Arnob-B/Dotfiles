@@ -6,6 +6,5 @@ require("config.lazy")
 require("config.keymaps")
 require("config.autocmds")
 require("config.options")
+require("config.obsidianconfig")
 require("config.lspconfig")
--- for debugger
-require("config.debugger")

@@ -87,8 +87,8 @@ vim.api.nvim_set_keymap('n', '<C-S-j>', ':below split<CR>:terminal<CR>', { norem
  
 
 -- auto bracket/'/" completions
-vim.api.nvim_set_keymap('i','{<CR>','{<CR>}<Esc>ko<tab>',{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('i','(','()<Esc>i',{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('i','[','[]<Esc>i',{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('i','\'','\'\'<Esc>i',{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('i','\"','\"\"<Esc>i',{ noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i','{<CR>','{<CR>}<Esc>ko<tab>',{ noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i','(','()<Esc>i',{ noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i','[','[]<Esc>i',{ noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i','\'','\'\'<Esc>i',{ noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i','\"','\"\"<Esc>i',{ noremap = true, silent = true })
