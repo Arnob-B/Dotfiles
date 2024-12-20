@@ -8,6 +8,19 @@ function movetodotfiles()
 end
 function movetonotes()
   vim.cmd('cd ~/OneDrive/Obsidian Vaults OD/')
+  local ondRes = vim.fn.jobstart('onedrive',{
+    on_stdout = function (_,data,_)
+      if(data) then
+        for _ , line in ipairs(data) do
+         print(line)
+        end
+      end
+    end
+  });
+  on_exit = function(_,_)
+    print("onedrive sync completed")
+  end
+  print(ondRes)
   vim.cmd('Ex')
 end
 return{

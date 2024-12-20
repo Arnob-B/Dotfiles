@@ -1,3 +1,5 @@
+
+
 -- be sure to include the bits/stdc++ file into the clang include folder
 -- to do so in terminal run clangd the look for the clangd.exe file location , you will find the include file somewhere over here
 require 'lspconfig'.clangd.setup({
@@ -8,10 +10,23 @@ require 'lspconfig'.clangd.setup({
   },
   filetypes = { "cpp", "c" }
 })
--- vim.diagnostic.config({ virtual_text = true, signs = false })
--- enable thihs for only signs at the end
+
+
+-- TypeScript
+-- prerequisite (install the typescript lsp from https://github.com/typescript-language-server/typescript-language-server)
+require 'lspconfig'.ts_ls.setup {
+  on_attach = function()
+    print("attached to ts_ls server");
+  end,
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+      cmd = { "typescript-language-server", "--stdio" }
+    } 
+
+
+  -- vim.diagnostic.config({ virtual_text = true, signs = false })
+  -- enable thihs for only signs at the end
 vim.diagnostic.config({ virtual_text = { format = function(d) return "" end }, signs = false })
-require('toggle_lsp_diagnostics').init(vim.diagnostic.config())
---vim.keyp <leader>tlv <Plug>(toggle-lsp-diag-vtext)
-vim.api.nvim_set_keymap('n', '<Leader>dd', ':ToggleDiagDefault<CR>', { noremap = true })
+  require('toggle_lsp_diagnostics').init(vim.diagnostic.config())
+  --vim.keyp <leader>tlv <Plug>(toggle-lsp-diag-vtext)
+  vim.api.nvim_set_keymap('n', '<Leader>dd', ':ToggleDiagDefault<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>df', ':ToggleDiagOn<CR>', { noremap = true })
