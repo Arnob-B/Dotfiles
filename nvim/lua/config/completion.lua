@@ -1,5 +1,4 @@
-
-  local cmp_status_ok, cmp = pcall(require, "cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
   return
 end
@@ -18,31 +17,31 @@ end
 
 local kind_icons = {
   Text = "󰉿",
-	Method = "󰆧",
-	Function = "󰊕",
-	Constructor = "",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
   Field = " ",
-	Variable = "󰀫",
-	Class = "󰠱",
-	Interface = "",
-	Module = "",
-	Property = "󰜢",
-	Unit = "󰑭",
-	Value = "󰎠",
-	Enum = "",
-	Keyword = "󰌋",
+  Variable = "󰀫",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "󰑭",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
   Snippet = "",
-	Color = "󰏘",
-	File = "󰈙",
+  Color = "󰏘",
+  File = "󰈙",
   Reference = "",
-	Folder = "󰉋",
-	EnumMember = "",
-	Constant = "󰏿",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
   Struct = "",
-	Event = "",
-	Operator = "󰆕",
+  Event = "",
+  Operator = "󰆕",
   TypeParameter = " ",
-	Misc = " ",
+  Misc = " ",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -53,12 +52,12 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    --["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -103,6 +102,7 @@ cmp.setup {
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         luasnip = "[Snippet]",
+        nvim_lsp = "[lsp]",
         buffer = "[Buffer]",
         path = "[Path]",
       })[entry.source.name]
@@ -110,6 +110,7 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "nvim_lsp", max_item_count = 5 },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
@@ -119,14 +120,31 @@ cmp.setup {
   --   select = false,
   -- },
   window = {
-          completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered({
+      border = 'single',
+      max_height = 5,
+      scrollbar = true,
+      side_padding = 0
+    }),
+    documentation = cmp.config.window.bordered({
+      border = 'single',
+      side_padding = 0
+    }),
     -- documentation = {
     --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     -- },
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 }
+
+-- Example: Customize the appearance of nvim-cmp highlight groups
+vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "#D4D4D4", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#808080", bg = "NONE", strikethrough = true })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#569CD6", bg = "NONE", bold = true })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#569CD6", bg = "NONE", italic = true })
+vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#C586C0", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#9CDCFE", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C8C8C8", bg = "NONE" })

@@ -3,20 +3,23 @@ function makeDiagTransparent()
   vim.cmd("highlight DiagnosticVirtualTextError guibg=none");
   vim.cmd("highlight DiagnosticVirtualTextWarning guibg=none");
 end
+
 function makeTransparent()
-  vim.api.nvim_set_hl(0,"Normal",{bg='none'})
-  vim.api.nvim_set_hl(0,"NormalNc",{bg='none'})
-  vim.api.nvim_set_hl(0,"NormalFloat",{bg='none'})
-  vim.api.nvim_set_hl(0,"TelescopeBorder",{bg='none'})
-  vim.api.nvim_set_hl(0,"FloatBorder",{bg='none'}) -- for nvim cmp
+  vim.api.nvim_set_hl(0, "Normal", { bg = 'none' })
+  vim.api.nvim_set_hl(0, "NormalNc", { bg = 'none' })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = 'none' })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = 'none' })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = 'none' }) -- for nvim cmp
   --vim.api.nvim_set_hl(0,"DiagnosticVirtualTextError",{guibg='none'})
   --vim.api.nvim_set_hl(0,"DiagnosticVirtualTextWarning",{guibg='none'})
 end
-return{
-    { 
-      "rose-pine/neovim", name = "rose-pine" ,
+
+return {
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
     priority = 1002,
-    config = function ()
+    config = function()
       vim.cmd("colorscheme rose-pine-main");
       makeTransparent()
       makeDiagTransparent()
@@ -34,7 +37,7 @@ return{
       makeTransparent()
     end
   } ,
-  ]]--
+  ]] --
   -- the line that comes in the indents
   {
     "lukas-reineke/indent-blankline.nvim"
@@ -43,10 +46,10 @@ return{
   },
   {
     "thedenisnikulin/vim-cyberpunk",
-    name="cyberpunk",
+    name = "cyberpunk",
   },
   {
     "akai54/2077.nvim",
-    name="akaiCyberpunk",
+    name = "akaiCyberpunk",
   },
 }

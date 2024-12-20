@@ -11,3 +11,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
+vim.opt.list = true;
+vim.opt.listchars = {
+  eol= '↲',
+  tab= '» ',
+}

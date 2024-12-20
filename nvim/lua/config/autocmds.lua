@@ -6,7 +6,7 @@
 
 
 -- vim auto reading
--- Define file extension and filetype variables
+-- Define file exension and filetype variables
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   command = "if mode() != 'c' | checktime | endif",
@@ -21,3 +21,22 @@ vim.api.nvim_create_autocmd('TextYankPost',{
     vim.highlight.on_yank();
   end
 })
+--nvim lsp autocommands
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
+
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre',{
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({
+            vim.lsp.buf.format({bufnr = args.buf , id = client.id})
+          })
+        end
+            })
+      end
+    end,
+})
+

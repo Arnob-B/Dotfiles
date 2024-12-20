@@ -1,60 +1,3 @@
--- { noremap = true, silent = true } 'noremap' prevents recursive mappings|'silent' suppresses the command from being echoed to the command line
-
---[[
--- Define a function to set up key mappings for the explorer
-local function setup_explorer_keymaps()
-    -- Use the leader key followed by "e" to open the explorer
-end
--- Call the setup function
-setup_explorer_keymaps()
--- Define key mappings
-local function compiler_and_run_cpp_windows()
-function cppexec()
-  local Popup = require("nui.popup")
-  local event = require("nui.utils.autocmd").event
-
-  local popup = Popup({
-    enter = true,
-    focusable = true,
-    border = {
-      style = "rounded",
-    },
-    position = "50%",
-    size = {
-      width = "80%",
-      height = "60%",
-    },
-  })
-
-  local filename = vim.api.nvim_buf_get_name(0);
-  -- mount/open the component
-  popup:mount()
-
-  --vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && a.exe",filename))
-  vim.fn.termopen(string.format("g++ \"%s\" -Dfastioexlude && ./a.out",filename))
-
-  -- unmount component when cursor leaves buffer
-  popup:map('n','q',function()
-    popup:unmount()
-  end)
-  popup:on(event.BufLeave, function()
-    popup:unmount()
-  end)
-end
-  vim.api.nvim_set_var("cppexec", cppexec)
-  vim.api.nvim_set_keymap('n', '<leader>1', ':CompetiTest run <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>2', ':CompetiTest run_no_compile <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>3', ':CompetiTest show_ui <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>4', ':lua cppexec() <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>at', ':CompetiTest add_testcase <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>et', ':CompetiTest edit_testcase <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>dt', ':CompetiTest delete_testcase <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>ap', ':CompetiTest receive problem <CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>ac', ':CompetiTest receive contest <CR>', { noremap = true, silent = true })
-end
-compiler_and_run_cpp_windows()
-]]--
-
 -- file explorer command
 vim.api.nvim_set_keymap('n', '<Leader>ee', ':Ex<CR>', { noremap = true, silent = true })
 
@@ -70,7 +13,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ee', ':Ex<CR>', { noremap = true, silent =
 
  -- Define a keymap to split open a new terminal at the bottom
 vim.api.nvim_set_keymap('n', '<C-S-j>', ':below split<CR>:terminal<CR>', { noremap = true, silent = true })
- 
+
 -- telescope keymaps
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -92,3 +35,10 @@ vim.keymap.set('n','<leader>p',"\"+p",{noremap=true});
 vim.keymap.set('n','<leader>P',"\"+P",{noremap=true});
 vim.keymap.set('v','<leader>p',"\"+p",{noremap=true});
 vim.keymap.set('v','<leader>P',"\"+P",{noremap=true});
+
+-- lsp configs
+
+vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
+vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'grr', vim.lsp.buf.references)
+vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help)
