@@ -1,0 +1,23 @@
+#! /bin/bash
+
+input(){
+  printf "shutdown\n"
+  printf "reboot\n"
+}
+
+userInput=$(input | rofi -dmenu)
+
+case $userInput in
+  "shutdown")
+    notify-send "process" "started" && onedrive && notify-send "one drive" "sync done" && notify-send "poweroff" "shutting down the system" && poweroff
+    ;;
+  "reboot")
+    ond;
+    notify-send "one drive" "sync done";
+    notify-send "reboot" "rebooting the system";
+    reboot
+    ;;
+  *)
+    echo "weird input"
+    ;;
+esac
