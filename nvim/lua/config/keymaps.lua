@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diag' })
 vim.keymap.set('n', '<leader>fen', function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
-  { desc = 'Telescope config' })
+	{ desc = 'Telescope config' })
 
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fs', builtin.current_buffer_fuzzy_find, { desc = 'Telescope live grep' })
@@ -29,7 +29,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 
 -- copy past from clipboard
-vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true });
+vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true }); -- depedent on after/ftplugin/cpp.lua
 vim.keymap.set('n', '<leader>Y', "\"+Y", { noremap = true });
 
 vim.keymap.set('n', '<leader>p', "\"+p", { noremap = true });

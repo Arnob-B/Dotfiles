@@ -4,7 +4,7 @@ configuration{
     show-icons: true;
     terminal: "alacritty";
     drun-display-format: "{icon} {name}";
-    location: 0;
+    location: 3;
     disable-history: false;
     sidebar-mode: false;
     display-drun: " ";
@@ -12,10 +12,10 @@ configuration{
     display-window: " ";
     
     //adding vim keybindings
-    kb-row-up: "Up,Control+k";
+    kb-row-up: "Up,Control+p";
     kb-row-left: "Left,Control+h";
     kb-row-right: "Right,Control+l";
-    kb-row-down: "Down,Control+j";
+    kb-row-down: "Down,Control+n";
 
     kb-accept-entry: "Control+z,Control+y,Return,KP_Enter";
 
@@ -25,5 +25,7 @@ configuration{
     kb-remove-char-back: "BackSpace";
     kb-move-char-forward: "Control+f";
     kb-mode-complete: "Control+o";
+
+    position: "top-right";  // New line added for position
 }
-@theme "./themes/simple-tokyonight.rasi"
+@theme "./themes/base16-metal-black.rasi"

@@ -8,13 +8,24 @@ vim.opt.number = true;
 -- Set tab width to 2 spaces
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.bo.softtabstop = 2
 
 vim.opt.list = true;
 vim.opt.listchars = {
-  eol = '↲',
-  tab = '» ',
+	eol = '↲',
+	tab = '» ',
+	space = '·',
+	extends = '→',
+	precedes = '←'
+}
+vim.cmd [[highlight ExtraSpace guibg=#000000 guifg=#1a1a1a]]
+vim.fn.matchadd('ExtraSpace', [[\s]])
+
+vim.opt.fillchars = {
+	eob = " ",
+	vert = "│",
+	fold = "·",
 }
 vim.o.winbar = "%=%#Title#缓冲[ %t%{&modified ? ' ☯' : ''} ]"
 vim.o.laststatus = 3

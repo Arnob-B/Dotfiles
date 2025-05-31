@@ -1,0 +1,29 @@
+[global]
+		offset = 0x0
+		separator_height = 10
+		origin = top-right
+    font = Monospace 10
+    frame_width = 2
+    frame_color = "#383838"
+    separator_color = frame
+    padding = 10
+    horizontal_padding = 10
+    corner_radius = 6
+    transparency = 10
+    background = "#000000"
+    foreground = "#c0c0c0"
+
+[urgency_low]
+    background = "#1c1c1c"
+    foreground = "#a2a2a2"
+    frame_color = "#383838"
+
+[urgency_normal]
+    background = "#000000"
+    foreground = "#c0c0c0"
+    frame_color = "#545454"
+
+[urgency_critical]
+    background = "#1c1c1c"
+    foreground = "#ff0000"
+    frame_color = "#ff0000"

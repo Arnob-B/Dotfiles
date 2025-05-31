@@ -183,18 +183,20 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3statucombis
-#}
+#finds out, if available)
+bar {
+	status_command i3status
+		mode hide
+		modifier Mod4
+}
 
 gaps inner 2
 smart_borders on
 # border colors
 default_border pixel 3
-client.focused          #AA4A44 #284b63 #ffffff #2f81bc   #284b63  
+client.focused          #ffffff #000000 #ffffff #2f81bc   #AAAAAA  
 client.focused_inactive #262626 #3e4c56 #cccccc #505d68   #3e4c56  
-client.unfocused        #1f1f1f #1b1b1b #888888 #24292e   #1b1b1b  
+client.unfocused        #1f1f1f #1b1b1b #888888 #24292e   #333333  
 client.urgent           #3c2a2a #a00000 #ffffff #a00000   #a00000  
 client.placeholder      #101010 #121212 #b0b0b0 #1a1a1a   #121212  
 
@@ -217,12 +219,22 @@ bindsym $mod+p exec ~/.config/rofi/scripts/powerSwitch
 
 #polybar setup
 #exec_always "bash ~/.config/polybar/launch.sh"
-# native bar
-bar {
-  status_command i3status
-}
 
+# Hide (move to scratchpad)
+bindsym $mod+Shift+minus move to scratchpad
 
-#bindsym $win+n exec 
+# Show (toggle scratchpad)
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+Ctrl+space sticky toggle
 
+# for_window [class="Alacritty" title="float"] floating enable
+for_window [class="kitty" title="float"] floating enable
+for_window [class="kitty" title="stickyfloat"] floating enable, sticky enable 
 
+# flameshot
+bindsym Print exec --no-startup-id flameshot gui
+
+# lock
+bindsym $win+l exec --no-startup-id ~/.config/scripts/blurlock.sh
+bindsym $win+p exec --no-startup-id ~/.config/scripts/powercycle.sh
+bindsym $win+colon exec --no-startup-id ~/.config/scripts/commands.sh

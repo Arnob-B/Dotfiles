@@ -1,0 +1,97 @@
+* {
+    background:     #0a0a0a;
+    background-alt: #1a1a1a;
+    foreground:     #c0c0c0;
+    selected:       #4a4a4a;
+    active:         #6a6a6a;
+    urgent:         #aa3333;
+    black:          #000000;
+
+    border-color:   #303030;
+    border:         2px;
+    padding:        6px;
+
+    font: "monospace 10";
+}
+
+window {
+    background-color: @background;
+    border: @border;
+    border-color: @border-color;
+    width: 15%;
+}
+
+mainbox {
+    background-color: @background;
+    foreground: @black;
+}
+
+listview {
+    background-color: @background;
+    lines: 10;
+    columns: 1;
+    fixed-height: true;
+}
+
+element {
+    background-color: @background;
+    text-color: @foreground;
+    padding: 4px;
+    margin: 2px;
+}
+element-icon{
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+element-text{
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @selected;
+    text-color: #ffffff;
+}
+
+element active {
+    background-color: @active;
+    text-color: #ffffff;
+}
+
+element urgent {
+    background-color: @urgent;
+    text-color: #ffffff;
+}
+
+inputbar {
+    background-color: #000000;
+    foreground: @black;
+    text-color: @black;
+    padding: 2px;
+    margin: 0px;
+    border: 0px;
+}
+
+prompt {
+    background-color: @black;
+    foreground: @black;
+    text-color: @foreground;
+}
+
+textbox {
+    background-color: @black;
+    foreground: @black;
+    text-color: @foreground;
+}
+
+scrollbar {
+    width: 6px;
+    border-radius: 3px;
+    handle-width: 6px;
+    background: @background-alt;
+    handle-color: @border-color;
+}
+entry {
+    background-color: #000000;  /* Pure black background */
+    text-color: #d0d0d0;        /* Metallic grey text */
+}
