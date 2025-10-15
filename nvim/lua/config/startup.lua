@@ -19,7 +19,7 @@ vim.g.netrw_liststyle = 0
 --vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 25
 
-vim.cmd("colorscheme base16-black-metal-venom");
+vim.cmd("colorscheme base16-tomorrow-night");
 makeTransparent()
 makeDiagTransparent()
 
@@ -47,7 +47,8 @@ makeDiagTransparent()
 --   })
 --
 --   -- Set cursor to block and use the custom highlight
---   vim.opt.guicursor = "n-v-c:block-CursorColor,i:block-CursorColor"
+-- thick cursor
+vim.opt.guicursor = "n-v-c:block-CursorColor,i:block-CursorColor"
 --
 --   -- Apply the green color at startup
 --   vim.api.nvim_create_autocmd("VimEnter", {
@@ -57,3 +58,9 @@ makeDiagTransparent()
 --     end,
 --   })
 -- end
+--
+--
+--
+--
+--
+--

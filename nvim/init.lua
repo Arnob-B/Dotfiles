@@ -6,3 +6,8 @@ require("config.keymaps")
 require("config.autocmds")
 require("config.options")
 require("config.telescope")
+require("config.notify")
+require("config.user_commands")
+
+-- custom plugins
+require("custom_plugins.TestCase").setup()

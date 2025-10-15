@@ -32,3 +32,13 @@ function pythonExec()
 end
 
 vim.api.nvim_buf_set_keymap(0, 'n', '<leader><leader>x', ':lua pythonExec() <CR>', { noremap = true, silent = true })
+
+
+
+-- leetcode specific bindings
+function Leetcodeyank()
+	vim.cmd('normal! ma`sV`e"+y`a')
+end
+
+vim.api.nvim_set_var("Leetcodeyank", Leetcodeyank);
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ly', ':lua Leetcodeyank()<CR>', { noremap = true, silent = true })

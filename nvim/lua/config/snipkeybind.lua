@@ -2,8 +2,8 @@ local ls = require('luasnip')
 
 local M = {}
 vim.keymap.set({ "i" }, "<C-J>", function() ls.expand() end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-H>", function() ls.jump(-1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-S-L>", function() ls.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-S-H>", function() ls.jump(-1) end, { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<C-E>", function()
   if ls.choice_active() then

@@ -1,4 +1,4 @@
-function cppexec()
+function Cpp_exec()
 	local Popup = require("nui.popup")
 	local event = require("nui.utils.autocmd").event
 
@@ -31,23 +31,16 @@ function cppexec()
 	end)
 end
 
-vim.api.nvim_set_var("cppexec", cppexec)
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>1', ':CompetiTest run <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>2', ':CompetiTest run_no_compile <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>3', ':CompetiTest show_ui <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>4', ':lua cppexec() <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>at', ':CompetiTest add_testcase <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>et', ':CompetiTest edit_testcase <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>dt', ':CompetiTest delete_testcase <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ap', ':CompetiTest receive problem <CR>', { noremap = true, silent = true })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ac', ':CompetiTest receive contest <CR>', { noremap = true, silent = true })
+vim.api.nvim_set_var("Cpp_exec", Cpp_exec)
+
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader><leader>x', ':lua Cpp_exec() <CR>', { noremap = true, silent = true })
 
 
 
 -- leetcode specific bindings
-function leetcodeyank()
-	vim.cmd("normal! `sV`e y")
+function Leetcodeyank()
+	vim.cmd('normal! ma`sV`e"+y`a')
 end
 
-vim.api.nvim_set_var("leetcodeyank", leetcodeyank);
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ly', ':lua leetcodeyank()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_var("Leetcodeyank", Leetcodeyank);
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ly', ':lua Leetcodeyank()<CR>', { noremap = true, silent = true })

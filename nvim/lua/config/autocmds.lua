@@ -9,39 +9,46 @@
 -- Define file exension and filetype variables
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
 })
 
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank();
-  end
+	desc = 'Highlight when yanking text',
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+	callback = function()
+		vim.highlight.on_yank();
+	end
 })
---nvim lsp autocommands for auto indent with blacklist
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then return end
+-- Global blacklist table
+Format_blacklist = Format_blacklist or {}
 
-    -- ⛔ Add filetypes you don't want auto-formatted here
-    local format_blacklist = {
-      "js",
-    }
+-- Function to check if filetype is blacklisted
+local function is_blacklisted(ft)
+	return vim.tbl_contains(Format_blacklist, ft)
+end
 
-    local filetype = vim.bo[args.buf].filetype
-    local is_blacklisted = vim.tbl_contains(format_blacklist, filetype)
+-- Toggle current buffer's filetype in blacklist
+local function toggle_formatting_blacklist()
+	local ft = vim.bo.filetype
+	local buf = vim.api.nvim_get_current_buf()
 
-    if client.supports_method("textDocument/formatting") and not is_blacklisted then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-        end,
-      })
-    end
-  end,
-})
+	if is_blacklisted(ft) then
+		-- Remove from blacklist
+		Format_blacklist = vim.tbl_filter(function(x)
+			return x ~= ft
+		end, Format_blacklist)
+		vim.notify("Removed '" .. ft .. "' from format blacklist")
+	else
+		-- Add to blacklist
+		table.insert(Format_blacklist, ft)
+		vim.notify("Added '" .. ft .. "' to format blacklist")
+	end
+
+	-- Force BufEnter callback to re-trigger logic
+	vim.api.nvim_exec_autocmds("BufEnter", { buffer = buf })
+end
+
+-- Create a user command to toggle formatting for the current filetype
+vim.api.nvim_create_user_command("ToggleFormatBlacklist", toggle_formatting_blacklist, {})

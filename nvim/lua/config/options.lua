@@ -19,8 +19,12 @@ vim.opt.listchars = {
 	extends = '→',
 	precedes = '←'
 }
-vim.cmd [[highlight ExtraSpace guibg=#000000 guifg=#1a1a1a]]
-vim.fn.matchadd('ExtraSpace', [[\s]])
+-- color of listchars
+vim.cmd [[highlight Whitespace guifg=#222222]] -- dark grey
+vim.cmd [[highlight NonText guifg=#222222]] -- dark grey
+
+-- vim.cmd [[highlight ExtraSpace guibg=#000000 guifg=#1a1a1a]]
+-- vim.fn.matchadd('ExtraSpace', [[\s]])
 
 vim.opt.fillchars = {
 	eob = " ",
@@ -30,3 +34,6 @@ vim.opt.fillchars = {
 vim.o.winbar = "%=%#Title#缓冲[ %t%{&modified ? ' ☯' : ''} ]"
 vim.o.laststatus = 3
 vim.o.statusline = "[%f] %r %h %w %=%y [%l:%c] [%p%%]"
+
+vim.o.showmode = false -- disable insert mode
+vim.o.cmdheight = 0    -- disable cmdheig

@@ -1,5 +1,6 @@
 -- file explorer command
-vim.api.nvim_set_keymap('n', '<Leader>ee', ':Oil<CR>', { noremap = true, silent = true })
+-- nvim tree
+vim.keymap.set( 'n', '<leader>et', '<cmd>NvimTreeFindFileToggle<cr>', { noremap = true, silent = true })
 
 --nvim-windows-spliting keywords
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true })
@@ -10,6 +11,9 @@ vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
 --tabs
 vim.api.nvim_set_keymap('n', '<S-l>', ':tabnext<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-h>', ':tabprevious<CR>', { noremap = true })
+for i = 1, 9 do
+	vim.api.nvim_set_keymap('n', '<leader>'.. i , ':tabn '..i..'<CR>', { noremap = true })
+end
 
 -- Define a keymap to split open a new terminal at the bottom
 vim.api.nvim_set_keymap('n', '<C-S-j>', ':below split<CR>:terminal<CR>', { noremap = true, silent = true })
@@ -26,7 +30,17 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fs', builtin.current_buffer_fuzzy_find, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>b', builtin.builtin, { desc = 'Telescope builtin' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>h', builtin.command_history, { desc = 'Telescope command history' })
 
+-- CompetiTest
+-- vim.keymap.set( 'n', '<leader>c1', ':CompetiTest run <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>c2', ':CompetiTest run_no_compile <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>c3', ':CompetiTest show_ui <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>at', ':CompetiTest add_testcase <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>ct', ':CompetiTest edit_testcase <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>dt', ':CompetiTest delete_testcase <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>ap', ':CompetiTest receive problem <CR>', { noremap = true, silent = true })
+-- vim.keymap.set( 'n', '<leader>ac', ':CompetiTest receive contest <CR>', { noremap = true, silent = true })
 
 -- copy past from clipboard
 vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true }); -- depedent on after/ftplugin/cpp.lua
@@ -50,3 +64,23 @@ vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 -- half page up and down while being in the middle
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+
+-- hot relaod
+function ReloadConfig()
+    for name,_ in pairs(package.loaded) do
+        if name:match('^plugins') or name:match('^config') then
+            package.loaded[name] = nil
+        end
+    end
+    dofile(vim.fn.stdpath('config') .. '/init.lua')
+    print("Config reloaded!")
+end
+
+-- Map to key
+vim.api.nvim_set_keymap('n', '<leader>R', ':lua ReloadConfig()<CR>', { noremap = true, silent = true })
+
+
+
+-- commmands
+vim.keymap.set( 'n', '<leader>:', ':Telescope commands<CR>', { noremap = true, silent = true })
